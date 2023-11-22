@@ -1,13 +1,23 @@
 import { FC, ChangeEvent, FormEvent } from "react";
-import Input from "../../../../components/input/input";
-import Button from "../../../../components/button/button";
-
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import useForm from "../../../../hooks/useForm";
 
+import { addExpense } from "../../../../store/actions/expenses";
+
+import Input from "../../../../components/input/input";
+import Button from "../../../../components/button/button";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./expenses-form.module.css";
+import { formatDate } from '../../../../utils/helpers';
 
 const ExpensesForm: FC = () => {
-    const [formData, changeFormData] = useForm<{ name: string, price: number; date: string }>({
+    const dispatch = useAppDispatch();
+
+    const [formData, changeFormData] = useForm<{
+        name: string;
+        price: number;
+        date: string;
+    }>({
         name: "",
         price: 0,
         date: "",
@@ -17,14 +27,19 @@ const ExpensesForm: FC = () => {
         const {
             target: { value, name },
         } = event;
+
+
+        
         changeFormData(name, value);
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("submited")
-    }
 
+        formatDate(formData.date);
+
+        dispatch(addExpense({ ...formData, id: uuidv4() }));
+    };
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -52,10 +67,10 @@ const ExpensesForm: FC = () => {
             <Button
                 type="submit"
                 title="Подтвердить"
-                extraClassForButton={styles.extraButton}
+                extraClassForButton={styles.extraClassButton}
             />
         </form>
-    )
+    );
 };
 
 export default ExpensesForm;
