@@ -1,5 +1,7 @@
 import expensesReducer from './expenses';
+import notifyReducer from './notify';
 
 export {
-  expensesReducer
+  expensesReducer,
+  notifyReducer
 }

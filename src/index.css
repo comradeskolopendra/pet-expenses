@@ -3,6 +3,16 @@
     src: url("./assets/fonts/montserrat/Montserrat.ttf");
 }
 
+@font-face {
+    font-family: Fuggles;
+    src: url("./assets/fonts/fuggles/Fuggles.ttf");
+}
+
 body {
     font-family: Montserrat;
+    margin: 0;
+}
+
+.content {
+    margin-top: 20px;
 }

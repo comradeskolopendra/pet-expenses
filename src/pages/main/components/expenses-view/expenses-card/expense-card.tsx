@@ -1,14 +1,24 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
+import { useAppDispatch } from "../../../../../store/hooks";
 import { formatDate } from "../../../../../utils/helpers";
+import Button from "../../../../../components/button/button";
 import styles from "./expense-card.module.css";
+import { removeExpense } from "../../../../../store/actions/expenses";
 
 interface IExpenseCard {
     name: string;
     price: number;
     date: string;
+    id: string;
 }
 
-const ExpenseCard: FC<IExpenseCard> = ({ name, price, date }) => {
+const ExpenseCard: FC<IExpenseCard> = ({ name, price, date, id }) => {
+    const dispatch = useAppDispatch();
+
+    const handleRemove = () => {
+        dispatch(removeExpense(id));
+    };
+
     return (
         <div className={styles.cardWrapper}>
             <div className={styles.cardLeftside}>
@@ -19,9 +29,12 @@ const ExpenseCard: FC<IExpenseCard> = ({ name, price, date }) => {
                     Дата: <span>{formatDate(date)}</span>
                 </p>
             </div>
-            <p className={styles.text}>
-                Цена: <span>{price}</span>
-            </p>
+            <div className={styles.cardLeftside}>
+                <p className={styles.text}>
+                    Цена: <span>{price}</span>
+                </p>
+                <Button type="button" title="Удалить" onClick={handleRemove} />
+            </div>
         </div>
     );
 };

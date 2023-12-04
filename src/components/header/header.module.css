@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.logo {
+    font-family: Fuggles;
+    color: black;
+    margin: 0;
+}

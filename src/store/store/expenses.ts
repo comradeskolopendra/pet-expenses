@@ -1,15 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { addExpense, removeExpense } from '../actions/expenses';
 
-interface IExepenses {
-  price: number;
-  name: string;
-  date: string;
-  id: string;
-}
+import type { IExpenses } from '../types';
 
 interface IInitialState {
-  expenses: IExepenses[];
+  expenses: IExpenses[];
 }
 
 const initialState: IInitialState = {

@@ -10,12 +10,13 @@ const ExpensesView: FC = () => {
 
     return (
         <section className={styles.wrapper}>
-            <h3>{new Date().getMonth() + 1}</h3>
             {expenses.map((expense) => (
                 <ExpenseCard
+                    key={expense.id}
                     price={expense.price}
                     name={expense.name}
                     date={expense.date}
+                    id={expense.id}
                 />
             ))}
         </section>

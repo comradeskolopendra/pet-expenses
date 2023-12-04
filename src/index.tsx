@@ -5,10 +5,9 @@ import store from "./store";
 import { Provider } from "react-redux";
 import "./index.css";
 
-const root = ReactDOM.createRoot(
+ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
-);
-root.render(
+).render(
     <React.StrictMode>
         <Provider store={store}>
             <App />
