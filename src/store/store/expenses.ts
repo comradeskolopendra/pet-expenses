@@ -1,14 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addExpense, removeExpense } from '../actions/expenses';
+import { addExpense, removeExpense, updateVisibleSidebar } from '../actions/expenses';
 
 import type { IExpenses } from '../types';
 
 interface IInitialState {
   expenses: IExpenses[];
+  visibleSidebar: boolean;
 }
 
 const initialState: IInitialState = {
-  expenses: []
+  expenses: [],
+  visibleSidebar: false
 }
 
 const expensesReducer = createReducer(initialState, (builder) => {
@@ -22,6 +24,11 @@ const expensesReducer = createReducer(initialState, (builder) => {
     .addCase(removeExpense, (state, action) => {
       const id = action.payload;
       state.expenses = [...state.expenses].filter(expense => expense.id !== id);
+
+      return state;
+    })
+    .addCase(updateVisibleSidebar, (state, action) => {
+      state.visibleSidebar = action.payload;
 
       return state;
     })

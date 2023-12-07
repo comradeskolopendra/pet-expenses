@@ -1,33 +1,42 @@
-import { FC, useMemo } from "react";
+import { FC, useCallback } from "react";
 
 import { useAppSelector } from "../../../../store/hooks";
 import ExpenseMonth from "./expense-month/expense-month";
 
-import { getStateExpenses } from "./selectors/selectors";
+import type { IMonths } from "../../../../store/types";
+
+import { getStateExpenses } from "./selectors";
 
 import styles from "./expenses-chart.module.css";
 
 const ExpensesChart: FC = () => {
     const expenses = useAppSelector(getStateExpenses);
-    const months = {
-        jan: expenses.filter((expense) => expense.month === "Январь"),
-        feb: expenses.filter((expense) => expense.month === "Февраль"),
-        marc: expenses.filter((expense) => expense.month === "Март"),
-        apr: expenses.filter((expense) => expense.month === "Апрель"),
-        may: expenses.filter((expense) => expense.month === "Май"),
-        jun: expenses.filter((expense) => expense.month === "Июнь"),
-        jul: expenses.filter((expense) => expense.month === "Июль"),
-        aug: expenses.filter((expense) => expense.month === "Август"),
-        sept: expenses.filter((expense) => expense.month === "Сентябрь"),
-        oct: expenses.filter((expense) => expense.month === "Октябрь"),
-        nov: expenses.filter((expense) => expense.month === "Ноябрь"),
-        dec: expenses.filter((expense) => expense.month === "Декабрь"),
-    }
+
+    const months: IMonths[] = [
+        "Январь",
+        "Февраль",
+        "Март",
+        "Апрель",
+        "Май",
+        "Июнь",
+        "Июль",
+        "Август",
+        "Сентябрь",
+        "Октябрь",
+        "Ноябрь",
+        "Декабрь"
+    ]
+
+    const getAmountByMonth = useCallback((month: IMonths) => {
+        return expenses.filter((expense) => expense.month === month).reduce((base, expense) => base + +expense.price, 0)
+    }, [])
 
     return (
-        <>
-            <ExpenseMonth value={42} month="Декабрь" />
-        </>
+        <div className={styles.wrapper}>
+            {months.map((month) => {
+                return <ExpenseMonth month={month} className={"month"} key={month} value={getAmountByMonth(month)} />
+            })}
+        </div>
     );
 };
 

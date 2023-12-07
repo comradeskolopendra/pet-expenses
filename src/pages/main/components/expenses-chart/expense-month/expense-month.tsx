@@ -4,12 +4,13 @@ import styles from "./expense-month.module.css";
 interface IExpenseMonth {
     month: string;
     value: number;
+    className: string;
 }
 
-const ExpenseMonth: FC<IExpenseMonth> = ({ month, value }) => {
+const ExpenseMonth: FC<IExpenseMonth> = ({ month, value, className }) => {
 
     return (
-        <p className={styles.value}>
+        <p className={`${styles.value} ${className}`}>
             {value}
             <span>
                 {month}

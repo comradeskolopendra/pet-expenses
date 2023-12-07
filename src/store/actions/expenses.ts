@@ -11,5 +11,6 @@ interface IAddExpense {
 
 const addExpense = createAction<IAddExpense, "ADD_EXPENSE">("ADD_EXPENSE");
 const removeExpense = createAction<string, "REMOVE_EXPENSE">("REMOVE_EXPENSE");
+const updateVisibleSidebar = createAction<boolean, "UPDATE_VISIBLE_REPORT">("UPDATE_VISIBLE_REPORT");
 
-export { addExpense, removeExpense };
+export { addExpense, removeExpense, updateVisibleSidebar };
