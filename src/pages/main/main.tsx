@@ -23,11 +23,10 @@ const Main: FC = () => {
         <section>
             <ExpensesForm />
             <ExpensesView />
-            {visibleSidebar && (
+            {visibleSidebar &&
                 <Sidebar onClose={handleClose}>
                     <ExpensesChart />
                 </Sidebar>
-            )
             }
         </section>
     );
