@@ -4,15 +4,11 @@ import { formatDate } from "../../../../../utils/helpers";
 import Button from "../../../../../components/button/button";
 import styles from "./expense-card.module.css";
 import { removeExpense } from "../../../../../store/actions/expenses";
+import { ECurrency, IExpenses } from "../../../../../store/types";
 
-interface IExpenseCard {
-    name: string;
-    price: number;
-    date: string;
-    id: string;
-}
+type IExpenseCard = Omit<IExpenses, "month">
 
-const ExpenseCard: FC<IExpenseCard> = ({ name, price, date, id }) => {
+const ExpenseCard: FC<IExpenseCard> = ({ name, price, date, id, currency }) => {
     const dispatch = useAppDispatch();
 
     const handleRemove = () => {
@@ -31,7 +27,7 @@ const ExpenseCard: FC<IExpenseCard> = ({ name, price, date, id }) => {
             </div>
             <div className={styles.cardLeftside}>
                 <p className={styles.text}>
-                    Цена: <span>{price}</span>
+                    Цена: <span>{price} {currency}</span>
                 </p>
                 <Button type="button" onClick={handleRemove}>
                     Удалить

@@ -1,12 +1,13 @@
 import { createAction } from "@reduxjs/toolkit";
-import type { IMonths } from "../types";
+import { IMonths, ECurrency } from "../types";
 
 interface IAddExpense {
     price: number;
     name: string;
     date: string;
     id: string;
-    month: IMonths
+    month: IMonths,
+    currency: ECurrency
 };
 
 const addExpense = createAction<IAddExpense, "ADD_EXPENSE">("ADD_EXPENSE");

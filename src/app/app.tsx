@@ -1,13 +1,10 @@
 import Main from "../pages/main/main";
-import { useAppSelector } from "../store/hooks";
 import Header from "../components/header/header";
 import Notify from "../components/notify/notify";
 
 import styles from "./app.module.css";
 
 function App() {
-    const open = useAppSelector(store => store.notify.open);
-
     return (
         <div className={styles.app}>
             <Header />
@@ -19,7 +16,7 @@ function App() {
 
             </footer>
 
-            {open && <Notify />}
+            <Notify />
         </div>
     );
 }

@@ -1,21 +1,27 @@
-import { FC, ChangeEvent, FormEvent } from "react";
+import { FC, ChangeEvent, FormEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { useAppDispatch } from "../../../../store/hooks";
-import useForm from "../../../../hooks/useForm";
 
 import { addExpense } from "../../../../store/actions/expenses";
+import { openNotify } from "../../../../store/actions/notify";
+import { IMonths, ECurrency } from "../../../../store/types";
+
+import { getDateInfo, getMonthByNumber } from '../../../../utils/helpers';
+
+import useForm from "../../../../hooks/useForm";
 
 import Input from "../../../../components/input/input";
 import Button from "../../../../components/button/button";
-import { v4 as uuidv4 } from "uuid";
+import Select from "../../../../components/select/select";
+
 import styles from "./expenses-form.module.css";
-import { getDateInfo, getMonthByNumber } from '../../../../utils/helpers';
-import { openNotify } from "../../../../store/actions/notify";
-import { IMonths } from "../../../../store/types";
 
 interface IFormData {
     name: string;
     price: number;
     date: string;
+    currency: ECurrency
 }
 
 const ExpensesForm: FC = () => {
@@ -25,9 +31,10 @@ const ExpensesForm: FC = () => {
         name: "",
         price: 0,
         date: "",
+        currency: ECurrency.Tenge
     });
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {
             target: { value, name },
         } = event;
@@ -80,6 +87,12 @@ const ExpensesForm: FC = () => {
                     onChange={handleChange}
                     extraClassForBlock={styles.extraClassForBlock}
                     extraClassForInput={styles.extraClassForBlock}
+                />
+                <Select
+                    options={["₸", "₽", "$", "€"]}
+                    value={formData.currency}
+                    onChange={handleChange}
+                    name={"currency"}
                 />
             </div>
             <Button type="submit" extraClassForButton={styles.extraClassButton}>
