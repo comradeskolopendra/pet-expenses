@@ -27,9 +27,9 @@ const ExpensesChart: FC = () => {
         "Декабрь"
     ]
 
-    const getAmountByMonth = useCallback((month: IMonths) => {
-        return expenses.filter((expense) => expense.month === month).reduce((base, expense) => base + +expense.price, 0)
-    }, [])
+    const getAmountByMonth = (month: IMonths) => {
+        return expenses.filter((expense) => expense.month === month).reduce((base, expense) => base + +expense.price, 0);
+    }
 
     return (
         <div className={styles.wrapper}>

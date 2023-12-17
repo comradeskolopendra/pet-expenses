@@ -33,7 +33,9 @@ const ExpenseCard: FC<IExpenseCard> = ({ name, price, date, id }) => {
                 <p className={styles.text}>
                     Цена: <span>{price}</span>
                 </p>
-                <Button type="button" title="Удалить" onClick={handleRemove} />
+                <Button type="button" onClick={handleRemove}>
+                    Удалить
+                </Button>
             </div>
         </div>
     );

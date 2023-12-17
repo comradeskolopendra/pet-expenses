@@ -82,11 +82,9 @@ const ExpensesForm: FC = () => {
                     extraClassForInput={styles.extraClassForBlock}
                 />
             </div>
-            <Button
-                type="submit"
-                title="Подтвердить"
-                extraClassForButton={styles.extraClassButton}
-            />
+            <Button type="submit" extraClassForButton={styles.extraClassButton}>
+                Подтвердить
+            </Button>
         </form>
     );
 };

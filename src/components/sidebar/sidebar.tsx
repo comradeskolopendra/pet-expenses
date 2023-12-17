@@ -1,29 +1,34 @@
-import { FC, ReactNode, useRef } from "react";
+import { FC, ReactNode } from "react";
 import { createPortal } from "react-dom";
 
-import { Transition } from 'react-transition-group';
+import { useAppDispatch } from "../../store/hooks";
+import { useAppSelector } from "../../store/hooks";
+import { getStateVisibleSidebar } from "./selectors";
+import { updateVisibleSidebar } from "../../store/actions/expenses";
 
 import styles from "./sidebar.module.css";
-import Overlay from "../overlay/overlay";
 import Button from "../button/button";
 
 interface ISidebar {
-    onClose: () => void;
     children: ReactNode;
 }
 
-const Sidebar: FC<ISidebar> = ({ onClose, children }) => {
-    const nodeRef = useRef(null);
+const Sidebar: FC<ISidebar> = ({ children }) => {
+    const dispatch = useAppDispatch();
+    const visibleSidebar = useAppSelector(getStateVisibleSidebar);
 
+    const handleOnToggle = () => {
+        dispatch(updateVisibleSidebar(!visibleSidebar))
+    };
 
     return createPortal(
         (
             <div>
-                <Overlay onClose={onClose} />
-                <div className={styles.sidebar}>
+                <div className={`${styles.sidebar} ${visibleSidebar ? styles.sidebarOpen : styles.sidebarClose}`}>
                     {children}
-
-                    <Button title={"Закрыть"} onClick={onClose} type={"button"} />
+                    <Button extraClassForButton={styles.close} onClick={handleOnToggle} type={"button"}>
+                        {visibleSidebar ? "Закрыть" : "Открыть"}
+                    </Button>
                 </div>
             </div>
         ), document.getElementById("sidebar")!

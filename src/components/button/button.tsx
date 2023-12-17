@@ -1,21 +1,21 @@
-import { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler, DetailedHTMLProps } from "react";
 import styles from "./button.module.css";
 
 interface ButtonProps {
     type: "submit" | "reset" | "button";
-    title: string;
+    children: string;
     onClick?: MouseEventHandler<HTMLButtonElement>;
     extraClassForButton?: string;
 }
 
-const Button: FC<ButtonProps> = ({ type, title, onClick, extraClassForButton }) => {
+const Button: FC<DetailedHTMLProps<ButtonProps, HTMLButtonElement>> = ({ type, children, onClick, extraClassForButton }) => {
     return (
         <button
             type={type}
             onClick={onClick}
             className={[styles.button, extraClassForButton].join(" ")}
         >
-            {title}
+            {children}
         </button>
     )
 };

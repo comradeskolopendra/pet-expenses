@@ -12,4 +12,20 @@
     align-items: center;
     box-sizing: border-box;
     padding: 10px 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.17);
+    transition: transform 0.3s linear;
+}
+
+.close {
+    position: absolute;
+    left: -100px;
+    top: 5px;
+}
+
+.sidebarOpen {
+    transform: translate(0px, 0);
+}
+
+.sidebarClose {
+    transform: translate(250px, 0);
 }

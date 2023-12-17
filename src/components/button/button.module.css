@@ -1,7 +1,7 @@
 .button {
     margin: 0 auto;
     border: 1px solid #1363f9;
-    background: transparent;
+    background: white;
     color: #1363f9;
     transition: all 0.15s ease-out;
     font-family: Montserrat;
