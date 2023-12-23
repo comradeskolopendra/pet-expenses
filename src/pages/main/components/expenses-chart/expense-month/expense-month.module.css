@@ -2,8 +2,36 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 0;
+    margin: 0 auto;
     border-top: 1px solid black;
     width: 100%;
-    padding: 5px 0;
+    box-sizing: border-box;
+    padding: 5px, 15px;
+    margin: 10px 0;
+}
+
+.currencys {
+    overflow-y: hidden;
+}
+
+.close {
+    max-height: 0;
+    transition: max-height 0.3s linear;
+}
+
+.open {
+    max-height: 170px;
+    transition: max-height 0.3s linear;
+}
+
+.info {
+    margin-top: 10px;
+}
+
+.infoPrice {
+    margin-top: 5px;
+}
+
+.extraButton {
+    margin-bottom: 10px;
 }

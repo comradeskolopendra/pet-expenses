@@ -11,9 +11,14 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 10px 15px;
     border-left: 1px solid rgba(0, 0, 0, 0.17);
     transition: transform 0.3s linear;
+}
+
+.content {
+    overflow-y: scroll;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .close {

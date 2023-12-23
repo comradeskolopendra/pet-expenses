@@ -1,3 +1,6 @@
+import { IMonths } from "../store/types";
+import { months } from "./constants";
+
 const formatDate = (date: string): string => new Date(date).toLocaleDateString();
 
 const getDateInfo = (date: string): { month: number; day: number; year: number; } => {
@@ -9,16 +12,7 @@ const getDateInfo = (date: string): { month: number; day: number; year: number; 
   }
 };
 
-const getMonthByNumber = (month: number) => {
-  const months = [
-    "Январь", "Февраль", "Март",
-    "Апрель", "Май", "Июнь",
-    "Июль", "Август", "Сентябрь",
-    "Октябрь", "Ноябрь", "Декабрь"
-  ];
-
-  return months[month];
-};
+const getMonthByNumber = (month: number): IMonths => months[month];
 
 export {
   formatDate,

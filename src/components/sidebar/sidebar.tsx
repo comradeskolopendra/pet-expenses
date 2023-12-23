@@ -25,7 +25,9 @@ const Sidebar: FC<ISidebar> = ({ children }) => {
         (
             <div>
                 <div className={`${styles.sidebar} ${visibleSidebar ? styles.sidebarOpen : styles.sidebarClose}`}>
-                    {children}
+                    <div className={styles.content}>
+                        {children}
+                    </div>
                     <Button extraClassForButton={styles.close} onClick={handleOnToggle} type={"button"}>
                         {visibleSidebar ? "Закрыть" : "Открыть"}
                     </Button>

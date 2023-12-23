@@ -3,5 +3,5 @@
 }
 
 .wrapper:first {
-    border-bottom: unset;
+    border-top: unset;
 }

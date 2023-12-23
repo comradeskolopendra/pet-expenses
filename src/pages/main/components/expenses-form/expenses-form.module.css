@@ -6,16 +6,6 @@
     margin: 0 auto;
 }
 
-.inputs {
-    display: grid;
-    grid-template-columns: 150px 150px 150px 150px;
-    column-gap: 8px;
-}
-
 .extraClassButton {
-    margin: 0;
-}
-
-.extraClassForBlock {
     margin: 0;
 }
