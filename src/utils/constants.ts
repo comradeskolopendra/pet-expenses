@@ -1,6 +1,6 @@
 import type { IMonths } from "../store/types";
 
-export const numsRegEx: RegExp = /[0-9]/g;
+export const lettersRegEx: RegExp = /[a-zA-Z]/g;
 export const months: IMonths[] = [
     "Январь",
     "Февраль",

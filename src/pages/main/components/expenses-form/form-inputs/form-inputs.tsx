@@ -6,6 +6,7 @@ import Select from "../../../../../components/select/select";
 import { IFormData } from "../expenses-form";
 
 import styles from "./form-inputs.module.css";
+import { lettersRegEx } from "../../../../../utils/constants";
 
 interface IFormInputs {
     changeFormData: (name: string, value: string) => void;
@@ -21,8 +22,8 @@ const FormInputs: FC<IFormInputs> = ({ changeFormData, formData }) => {
 
 
 
-        if (name === "price" && /[a-zA-Z]/g.test(value)) {
-            value.replace(/[a-zA-Z]/gm, "");
+        if (name === "price" && lettersRegEx.test(value)) {
+            value.replace(lettersRegEx, "");
 
             return;
         }

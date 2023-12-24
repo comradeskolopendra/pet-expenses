@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 
 import styles from "./overlay.module.css";
 
 
 interface IOverlay {
-    onClose: () => void;
+    onClose: MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
 }
 
 const Overlay: FC<IOverlay> = ({ onClose }) => {

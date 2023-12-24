@@ -23,7 +23,11 @@ export interface IFormData {
     currency: ECurrency
 }
 
-const ExpensesForm: FC = () => {
+interface IExpensesForm {
+    onOpenModal: VoidFunction
+}
+
+const ExpensesForm: FC<IExpensesForm> = ({ onOpenModal }) => {
     const dispatch = useAppDispatch();
 
     const [formData, changeFormData, resetForm] = useForm<IFormData>({
@@ -54,7 +58,7 @@ const ExpensesForm: FC = () => {
         <form className={styles.form} onSubmit={handleSubmit}>
             <FormInputs formData={formData} changeFormData={changeFormData} />
             <div>
-                <Button type="button" extraClassForButton={styles.extraClassLimit}>
+                <Button type="button" onClick={onOpenModal} extraClassForButton={styles.extraClassLimit}>
                     Добавить лимит
                 </Button>
                 <Button type="submit" extraClassForButton={styles.extraClassButton}>
