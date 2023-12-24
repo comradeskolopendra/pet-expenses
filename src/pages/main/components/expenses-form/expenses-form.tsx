@@ -53,9 +53,14 @@ const ExpensesForm: FC = () => {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <FormInputs formData={formData} changeFormData={changeFormData} />
-            <Button type="submit" extraClassForButton={styles.extraClassButton}>
-                Подтвердить
-            </Button>
+            <div>
+                <Button type="button" extraClassForButton={styles.extraClassLimit}>
+                    Добавить лимит
+                </Button>
+                <Button type="submit" extraClassForButton={styles.extraClassButton}>
+                    Подтвердить
+                </Button>
+            </div>
         </form>
     );
 };

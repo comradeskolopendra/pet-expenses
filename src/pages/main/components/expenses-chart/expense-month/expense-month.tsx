@@ -6,6 +6,8 @@ import styles from "./expense-month.module.css";
 import { getStateExpenses } from "../selectors";
 import { ECurrency, IMonths } from "../../../../../store/types";
 
+import { v4 as uuid } from "uuid";
+
 interface IExpenseMonth {
     month: IMonths;
     className: string;
@@ -31,7 +33,7 @@ const ExpenseMonth: FC<IExpenseMonth> = ({ month, className }) => {
     }
 
     return (
-        <p className={`${styles.value} ${className}`}>
+        <aside className={`${styles.value} ${className}`}>
             <div className={styles.info}>
                 <Button type="button" extraClassForButton={styles.extraButton} onClick={handleCurrencysOpen}>
                     Валюты
@@ -39,7 +41,7 @@ const ExpenseMonth: FC<IExpenseMonth> = ({ month, className }) => {
                 <div className={`${styles.currencys} ${currencysOpen ? styles.open : styles.close}`}>
                     {Object.entries(currencysInfo).map(([currency, price]) => {
                         return (
-                            <p className={styles.infoPrice}>
+                            <p className={styles.infoPrice} key={uuid()}>
                                 <span>{price}</span> {currency}
                             </p>
                         )
@@ -49,7 +51,7 @@ const ExpenseMonth: FC<IExpenseMonth> = ({ month, className }) => {
             <span>
                 {month}
             </span>
-        </p>
+        </aside>
     )
 };
 
