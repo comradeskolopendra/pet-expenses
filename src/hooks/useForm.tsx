@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 
-function useForm<FieldsType>(fields: FieldsType): [FieldsType, (name: string, value: string) => void, () => void] {
+type Form<T> = [T, (name: string, value: string) => void, () => void];
+
+const useForm = <FieldsType,>(fields: FieldsType): Form<FieldsType> => {
     const [values, setValues] = useState<FieldsType>(fields);
 
     const change = useCallback((name: string, value: string): void => {
@@ -15,6 +17,6 @@ function useForm<FieldsType>(fields: FieldsType): [FieldsType, (name: string, va
     }, [])
 
     return [values, change, reset];
-};
+}
 
 export default useForm;

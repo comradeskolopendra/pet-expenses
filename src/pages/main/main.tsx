@@ -7,26 +7,15 @@ import Sidebar from "../../components/sidebar/sidebar";
 import Modal from "../../components/modal/modal";
 
 const Main: FC = () => {
-    const [isLimitOpen, setLimitOpen] = useState<boolean>(false);
-
-    const handlerOnCloseLimit = () => {
-        setLimitOpen(false);
-    }
-
-    const handlerOnOpenLimit = () => {
-        setLimitOpen(true);
-    }
 
     return (
         <section>
-            <ExpensesForm onOpenModal={handlerOnOpenLimit} /> {/* TODO: переписать на редакс! */}
+            <ExpensesForm /> {/* TODO: переписать на редакс! */}
             <ExpensesView />
             <Sidebar>
                 <ExpensesChart />
             </Sidebar>
-            {
-                isLimitOpen && <Modal children={<h1>modal opened!!!</h1>} onClose={handlerOnCloseLimit} />
-            }
+            <Modal children={<h1>modal opened!!!</h1>} />
         </section>
     );
 };

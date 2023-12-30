@@ -1,10 +1,11 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { expensesReducer, notifyReducer } from "./store";
+import { expensesReducer, modalReducer, notifyReducer } from "./store";
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     expenses: expensesReducer,
-    notify: notifyReducer
+    notify: notifyReducer,
+    modal: modalReducer
 });
 
 const store = configureStore({

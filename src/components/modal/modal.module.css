@@ -28,3 +28,15 @@
     border: none;
     background: unset;
 }
+
+.modalWrapper {
+    transition: transform 0.3s ease-in-out;
+}
+
+.opened {
+    opacity: 1;
+}
+
+.closed {
+    opacity: 0;
+}

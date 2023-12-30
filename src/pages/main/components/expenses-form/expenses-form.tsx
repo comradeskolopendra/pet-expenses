@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../../../store/hooks";
 
 import { addExpense } from "../../../../store/actions/expenses";
 import { openNotify } from "../../../../store/actions/notify";
+import { changeModalVisible } from "../../../../store/actions/modal";
 import { IMonths, ECurrency } from "../../../../store/types";
 
 import { getDateInfo, getMonthByNumber } from '../../../../utils/helpers';
@@ -23,11 +24,7 @@ export interface IFormData {
     currency: ECurrency
 }
 
-interface IExpensesForm {
-    onOpenModal: VoidFunction
-}
-
-const ExpensesForm: FC<IExpensesForm> = ({ onOpenModal }) => {
+const ExpensesForm: FC = () => {
     const dispatch = useAppDispatch();
 
     const [formData, changeFormData, resetForm] = useForm<IFormData>({
@@ -37,6 +34,9 @@ const ExpensesForm: FC<IExpensesForm> = ({ onOpenModal }) => {
         currency: ECurrency.Tenge
     });
 
+    const handleAddLimit = () => {
+        dispatch(changeModalVisible(true))
+    };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -58,7 +58,7 @@ const ExpensesForm: FC<IExpensesForm> = ({ onOpenModal }) => {
         <form className={styles.form} onSubmit={handleSubmit}>
             <FormInputs formData={formData} changeFormData={changeFormData} />
             <div>
-                <Button type="button" onClick={onOpenModal} extraClassForButton={styles.extraClassLimit}>
+                <Button type="button" onClick={handleAddLimit} extraClassForButton={styles.extraClassLimit}>
                     Добавить лимит
                 </Button>
                 <Button type="submit" extraClassForButton={styles.extraClassButton}>
